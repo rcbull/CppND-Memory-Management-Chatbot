@@ -63,3 +63,19 @@ ChatBot Move Assignment Operator
 ChatBot Destructor
 ChatBot Destructor 
 ```
+
+## Update Cmake
+
+```
+sudo apt remove cmake
+# Removing the old cmake
+sudo apt purge cmake 
+sudo apt autoremove
+ 
+# Downloading the new
+https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2-Linux-x86_64.sh
+sudo mkdir /opt/cmake
+sudo sh cmake-3.16.2-Linux-x86_64.sh --prefix=/opt/cmake --skip-license
+# Make it available
+sudo update-alternatives --install /usr/bin/cmake cmake /opt/cmake/bin/cmake 1 --force
+```
