@@ -28,8 +28,7 @@ public:
   ~ChatBotPanelDialog();
 
   // getter / setter
-  // change pointer to smart pointer
-  std::unique_ptr<ChatLogic> &GetChatLogicHandle() { return _chatLogic; }
+  ChatLogic  *GetChatLogicHandle() { return _chatLogic.get(); }
 
   // events
   void paintEvent(wxPaintEvent &evt);
