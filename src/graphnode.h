@@ -2,6 +2,7 @@
 #define GRAPHNODE_H_
 
 #include "chatbot.h"
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -14,7 +15,9 @@ private:
   ////
 
   // data handles (owned)
-  std::vector<GraphEdge *> _childEdges; // edges to subsequent nodes
+  // using smart pointer
+  std::vector<std::unique_ptr<GraphEdge>>
+      _childEdges; // edges to subsequent nodes
 
   // data handles (not owned)
   std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes
@@ -42,12 +45,13 @@ public:
   // proprietary functions
   void AddToken(std::string token); // add answers to list
   void AddEdgeToParentNode(GraphEdge *edge);
-  void AddEdgeToChildNode(GraphEdge *edge);
+  // using smart pointer
+  void AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge);
 
   //// STUDENT CODE
   ////
 
-  void MoveChatbotHere(ChatBot *chatbot);
+  void MoveChatbotHere(ChatBot chatbot);
 
   ////
   //// EOF STUDENT CODE
